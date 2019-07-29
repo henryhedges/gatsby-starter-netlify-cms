@@ -10,25 +10,10 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sass',
     {
-      // keep as first gatsby-source-filesystem plugin for gatsby image support
-      resolve: 'gatsby-source-filesystem',
+      resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/static/img`,
-        name: 'uploads',
-      },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/src/pages`,
-        name: 'pages',
-      },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/src/img`,
-        name: 'images',
+        path: `${__dirname}/meta`,
+        name: `meta`,
       },
     },
     'gatsby-plugin-sharp',
@@ -78,15 +63,15 @@ module.exports = {
   ],
   // for avoiding CORS while developing Netlify Functions locally
   // read more: https://www.gatsbyjs.org/docs/api-proxy/#advanced-proxying
-  developMiddleware: app => {
-    app.use(
-      "/.netlify/functions/",
-      proxy({
-        target: "http://localhost:9000",
-        pathRewrite: {
-          "/.netlify/functions/": "",
-        },
-      })
-    )
-  },
+  // developMiddleware: app => {
+  //   app.use(
+  //     "/.netlify/functions/",
+  //     proxy({
+  //       target: "http://localhost:9000",
+  //       pathRewrite: {
+  //         "/.netlify/functions/": "",
+  //       },
+  //     })
+  //   )
+  // },
 }
